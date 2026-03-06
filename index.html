@@ -1,63 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Fast Food Ordering</title>
+  <title>Fast Food</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>Fast Food Menu</h1>
+<h1>Welcome to Fast Food Ordering</h1>
 
 <!-- Cart button -->
 <div style="text-align:right; margin:10px;">
   <a href="cart.html"><img src="images/cart.png" width="50" alt="Cart"></a>
 </div>
 
-<!-- Banner -->
-<img src="images/fastfood-banner.jpg" width="400" alt="Fast Food Banner" style="border-radius:10px; margin-bottom:20px;">
-
-<h2>Choose Your Food</h2>
-
-<div class="menu" id="food-items"></div>
-
-<script>
-const foodData = [
-  {name:"Cheese Burger", image:"images/cheese-burger.jpg", price:150},
-  {name:"Chicken Burger", image:"images/chicken-burger.jpg", price:180},
-  {name:"Veg Burger", image:"images/veg-burger.jpg", price:120},
-  {name:"Margherita Pizza", image:"images/margherita.jpg", price:250},
-  {name:"Pepperoni Pizza", image:"images/pepperoni.jpg", price:350},
-  {name:"Mojito", image:"images/mojito-mint.jpg", price:100},
-  {name:"Coke", image:"images/coke.jpg", price:50},
-  {name:"Fries", image:"images/fries.jpg", price:80}
-];
-
-const container = document.getElementById("food-items");
-
-foodData.forEach(item=>{
-  const div = document.createElement("div");
-  div.className = "item";
-  div.innerHTML = `
-    <img src="${item.image}" width="150" alt="${item.name}">
-    <h3>${item.name}</h3>
-    <p>Price: ₹${item.price}</p>
-    <button onclick="addToCart('${item.name}',${item.price})">Add to Cart</button>
-  `;
-  container.appendChild(div);
-});
-
-function addToCart(name, price){
-  let cart = JSON.parse(localStorage.getItem("cart") || "[]");
-  const index = cart.findIndex(x=>x.name===name);
-  if(index>=0){
-    cart[index].qty++;
-  }else{
-    cart.push({name:name, price:price, qty:1});
-  }
-  localStorage.setItem("cart", JSON.stringify(cart));
-  alert(name + " added to cart!");
-}
-</script>
+<!-- Fast Food main card -->
+<div class="menu">
+  <div class="item">
+    <a href="food.html">
+      <img src="images/fastfood.jpg" alt="Fast Food" width="200">
+      <h2>Fast Food</h2>
+    </a>
+  </div>
+</div>
 
 </body>
 </html>
