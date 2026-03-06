@@ -36,6 +36,7 @@ function renderCart(){
 function updateQty(index, value){
   cart[index].qty = parseInt(value);
   localStorage.setItem("cart", JSON.stringify(cart));
+  renderCart();
 }
 
 function removeItem(index){
