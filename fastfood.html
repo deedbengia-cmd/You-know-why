@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fast Food Items</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Choose Your Food</h1>
+
+<!-- Cart button -->
+<div style="text-align:right; margin:10px;">
+  <a href="cart.html"><img src="images/cart.png" width="50" alt="Cart"></a>
+</div>
+
+<div class="menu" id="food-items"></div>
+
+<script>
+const foodData = [
+  {name:"Pizza", image:"images/pizza.jpg", price:250},
+  {name:"Burger", image:"images/burger.jpg", price:150},
+  {name:"Mojito", image:"images/mojito.jpg", price:100}
+];
+
+const container = document.getElementById("food-items");
+
+foodData.forEach(item=>{
+  const div = document.createElement("div");
+  div.className = "item";
+  div.innerHTML = `
+    <img src="${item.image}" width="150" alt="${item.name}">
+    <h3>${item.name}</h3>
+    <p>Price: ₹${item.price}</p>
+    <button onclick="addToCart('${item.name}',${item.price})">Add to Cart</button>
+  `;
+  container.appendChild(div);
+});
+
+function addToCart(name, price){
+  let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  const index = cart.findIndex(x=>x.name===name);
+  if(index>=0){
+    cart[index].qty++;
+  }else{
+    cart.push({name:name, price:price, qty:1});
+  }
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert(name + " added to cart!");
+}
+</script>
+
+</body>
+</html>
